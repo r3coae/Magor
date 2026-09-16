@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magor 1.2 — Smart File Organizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main Liquid Glass Window Container -->
+    <div class="glass-window">
+        
+        <!-- macOS Liquid Glass Titlebar -->
+        <header class="titlebar">
+            <!-- macOS Traffic Light Controls -->
+            <div class="traffic-lights">
+                <button class="traffic-btn close-btn" id="btn-close" title="Close">
+                    <span class="glyph">&times;</span>
+                </button>
+                <button class="traffic-btn min-btn" id="btn-minimize" title="Minimize">
+                    <span class="glyph">&minus;</span>
+                </button>
+                <button class="traffic-btn max-btn" id="btn-maximize" title="Maximize">
+                    <span class="glyph">&#43;</span>
+                </button>
+            </div>
+
+            <!-- App Title and Brand -->
+            <div class="app-branding">
+                <div class="app-icon-wrapper">
+                    <img src="assets/icon.png" alt="Magor" class="app-logo">
+                </div>
+                <div class="app-title-group">
+                    <span class="app-name">Magor</span>
+                    <span class="app-version">1.2</span>
+                </div>
+                <div class="status-indicator" id="top-status-indicator">
+                    <span class="status-dot"></span>
+                    <span class="status-text" id="top-status-text">Ready</span>
+                </div>
+            </div>
+
+            <!-- macOS Segmented Control Tabs -->
+            <nav class="segmented-control">
+                <button class="segment-btn active" data-tab="organizer">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    <span>Organizer</span>
+                </button>
+                <button class="segment-btn" data-tab="preview">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    <span>Files & Preview</span>
+                </button>
+                <button class="segment-btn" data-tab="activity">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                    <span>Activity Log</span>
+                </button>
+                <button class="segment-btn" data-tab="settings">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    <span>Categories</span>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="content-body">
+            
+            <!-- TAB 1: ORGANIZER -->
+            <section class="tab-pane active" id="pane-organizer">
+                
+                <!-- Liquid Glass Folder Dropzone & Selector -->
+                <div class="glass-card dropzone-card" id="folder-dropzone">
+                    <div class="dropzone-glow"></div>
+                    <div class="dropzone-content">
+                        <div class="dropzone-icon">
+                            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path><polyline points="12 11 12 17"></polyline><polyline points="9 14 12 11 15 14"></polyline></svg>
+                        </div>
+                        <div class="dropzone-text">
+                            <h3 id="target-folder-name">Choose or Drag a Folder Here</h3>
+                            <p id="target-folder-path">Drag any directory from Ubuntu Files (Nautilus) or click Browse</p>
+                        </div>
+                        <div class="dropzone-actions">
+                            <button class="glass-button secondary-btn" id="btn-browse">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                                <span>Browse Folder…</span>
+                            </button>
+                            <button class="glass-button icon-only-btn" id="btn-open-explorer" title="Open in Ubuntu Files" style="display: none;">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Liquid Metric Stats Grid -->
+                <div class="stats-grid">
+                    <div class="glass-card stat-card">
+                        <div class="stat-header">
+                            <span class="stat-label">TOTAL FILES</span>
+                            <div class="stat-icon-pill icon-blue">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="stat-files">0</div>
+                        <div class="stat-meta" id="stat-files-meta">No files scanned</div>
+                    </div>
+
+                    <div class="glass-card stat-card">
+                        <div class="stat-header">
+                            <span class="stat-label">TOTAL VOLUME</span>
+                            <div class="stat-icon-pill icon-purple">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="stat-size">0 B</div>
+                        <div class="stat-meta" id="stat-size-meta">0 B on disk</div>
+                    </div>
+
+                    <div class="glass-card stat-card">
+                        <div class="stat-header">
+                            <span class="stat-label">DUPLICATES (SHA-256)</span>
+                            <div class="stat-icon-pill icon-orange">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="stat-duplicates">0</div>
+                        <div class="stat-meta" id="stat-duplicates-meta">Identical files</div>
+                    </div>
+
+                    <div class="glass-card stat-card">
+                        <div class="stat-header">
+                            <span class="stat-label">CATEGORIES</span>
+                            <div class="stat-icon-pill icon-green">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="stat-categories">0</div>
+                        <div class="stat-meta" id="stat-categories-meta">Mapped categories</div>
+                    </div>
+                </div>
+
+                <!-- Liquid Category Distribution Bar -->
+                <div class="glass-card category-distribution-card" id="distribution-card" style="display: none;">
+                    <div class="distribution-header">
+                        <span class="section-title">Category Breakdown</span>
+                        <span class="distribution-count" id="distribution-total">0 files</span>
+                    </div>
+                    <div class="liquid-distribution-bar" id="category-bar"></div>
+                    <div class="category-legend" id="category-legend"></div>
+                </div>
+
+                <!-- Options & Controls Grid -->
+                <div class="glass-card options-card">
+                    <div class="options-header">
+                        <span class="section-title">Organization Options</span>
+                        <span class="options-subtitle">Configured for safe, non-destructive file placement</span>
+                    </div>
+                    <div class="toggles-row">
+                        <!-- Toggle 1: Recursive -->
+                        <div class="mac-toggle-item">
+                            <label class="mac-switch">
+                                <input type="checkbox" id="toggle-recursive">
+                                <span class="slider"></span>
+                            </label>
+                            <div class="toggle-info">
+                                <span class="toggle-title">Recursive Scan</span>
+                                <span class="toggle-desc">Include all subdirectories</span>
+                            </div>
+                        </div>
+
+                        <!-- Toggle 2: Hidden Files -->
+                        <div class="mac-toggle-item">
+                            <label class="mac-switch">
+                                <input type="checkbox" id="toggle-hidden">
+                                <span class="slider"></span>
+                            </label>
+                            <div class="toggle-info">
+                                <span class="toggle-title">Include Hidden</span>
+                                <span class="toggle-desc">Files starting with '.'</span>
+                            </div>
+                        </div>
+
+                        <!-- Toggle 3: Duplicate Detection -->
+                        <div class="mac-toggle-item">
+                            <label class="mac-switch">
+                                <input type="checkbox" id="toggle-duplicates" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <div class="toggle-info">
+                                <span class="toggle-title">SHA-256 Hashes</span>
+                                <span class="toggle-desc">Detect identical file copies</span>
+                            </div>
+                        </div>
+
+                        <!-- Toggle 4: Dry-Run Preview -->
+                        <div class="mac-toggle-item">
+                            <label class="mac-switch">
+                                <input type="checkbox" id="toggle-dryrun">
+                                <span class="slider"></span>
+                            </label>
+                            <div class="toggle-info">
+                                <span class="toggle-title">Dry-Run Preview</span>
+                                <span class="toggle-desc">Simulate without moving</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Progress Card -->
+                <div class="glass-card progress-card" id="progress-card" style="display: none;">
+                    <div class="progress-info-row">
+                        <span class="progress-status-label" id="progress-phase">Scanning directory...</span>
+                        <span class="progress-percentage" id="progress-percent">0%</span>
+                    </div>
+                    <div class="liquid-progress-track">
+                        <div class="liquid-progress-fill" id="progress-bar-fill"></div>
+                    </div>
+                    <div class="progress-item-name" id="progress-item">Initializing...</div>
+                </div>
+
+                <!-- Action Button Toolbar -->
+                <div class="actions-toolbar">
+                    <button class="glass-button secondary-btn" id="btn-scan" disabled>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                        <span>Scan & Preview</span>
+                    </button>
+
+                    <button class="glass-button primary-accent-btn" id="btn-organize" disabled>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span>Organize Files</span>
+                    </button>
+
+                    <button class="glass-button danger-btn" id="btn-undo" disabled>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                        <span>Undo Last Action</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- TAB 2: FILES & PREVIEW -->
+            <section class="tab-pane" id="pane-preview">
+                <div class="glass-card preview-header-card">
+                    <div class="search-box">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="preview-search" placeholder="Search by name, extension or category…">
+                    </div>
+                    <div class="filter-pills" id="filter-pills">
+                        <button class="pill-btn active" data-filter="all">All</button>
+                        <button class="pill-btn" data-filter="Images">Images</button>
+                        <button class="pill-btn" data-filter="Documents">Documents</button>
+                        <button class="pill-btn" data-filter="Code">Code</button>
+                        <button class="pill-btn" data-filter="Archives">Archives</button>
+                        <button class="pill-btn" data-filter="Audio">Audio</button>
+                        <button class="pill-btn" data-filter="Video">Video</button>
+                        <button class="pill-btn" data-filter="duplicates">Duplicates</button>
+                    </div>
+                </div>
+
+                <div class="glass-card table-card">
+                    <div class="table-scroll-container">
+                        <table class="glass-table" id="preview-table">
+                            <thead>
+                                <tr>
+                                    <th>File Name</th>
+                                    <th>Target Category</th>
+                                    <th>Size</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="preview-table-body">
+                                <tr>
+                                    <td colspan="4" class="empty-table-cell">No folder scanned yet. Select a folder to view candidate files.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: ACTIVITY LOG -->
+            <section class="tab-pane" id="pane-activity">
+                <div class="glass-card log-card">
+                    <div class="log-toolbar">
+                        <div class="log-title-group">
+                            <span class="section-title">Real-Time Event Stream</span>
+                            <span class="log-counter" id="log-count">0 messages</span>
+                        </div>
+                        <div class="log-actions">
+                            <button class="glass-button secondary-btn small-btn" id="btn-copy-log">Copy Log</button>
+                            <button class="glass-button secondary-btn small-btn" id="btn-clear-log">Clear</button>
+                        </div>
+                    </div>
+                    <div class="console-terminal" id="activity-log-console">
+                        <div class="log-entry log-info">
+                            <span class="log-time">00:00:00</span>
+                            <span class="log-tag info">INFO</span>
+                            <span class="log-msg">Magor 1.2 initialized. Ready to organize files.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: SETTINGS & CATEGORIES -->
+            <section class="tab-pane" id="pane-settings">
+                <div class="glass-card settings-card">
+                    <div class="settings-intro">
+                        <img src="assets/icon.png" alt="Magor 1.2" class="about-icon">
+                        <div>
+                            <h2>Magor 1.2</h2>
+                            <p>Universal Smart File Organizer for Linux Debian & Ubuntu</p>
+                            <span class="badge-version">v1.2.0 • Linux Native</span>
+                        </div>
+                    </div>
+                    <hr class="glass-divider">
+                    <h3 class="section-title">Built-In Smart Categorization Map</h3>
+                    <p class="section-desc">Files are intelligently organized into dedicated folders based on their file type.</p>
+                    <div class="category-grid" id="category-grid">
+                        <!-- Populated dynamically via JS -->
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- macOS Bottom Status Bar -->
+        <footer class="bottom-bar">
+            <span class="status-tip" id="bottom-status">Select a target folder to scan or drag files directly into the window.</span>
+            <span class="version-label">Magor 1.2 • Liquid Glass Engine</span>
+        </footer>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
