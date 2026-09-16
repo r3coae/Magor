@@ -1,0 +1,25 @@
+{
+  "name": "magor",
+  "version": "1.2.0",
+  "description": "Magor 1.2 - Smart File Organizer for Linux with macOS Liquid Glass Interface",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "cli": "node magor.js",
+    "build:deb": "bash scripts/build-deb.sh"
+  },
+  "keywords": [
+    "file-organizer",
+    "macos-ui",
+    "liquid-glass",
+    "electron",
+    "productivity",
+    "ubuntu",
+    "debian"
+  ],
+  "author": "Zakaria",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^44.4.1"
+  }
+}
